@@ -376,189 +376,142 @@ stockseek/
 ## Acknowledgments
 This project is adapted from [ai-hedge-fund](https://github.com/virattt/ai-hedge-fund.git). We sincerely thank the original authors for their excellent work and inspiration. The original project provided a solid foundation for our adaptations and improvements tailored to the A-share market.
 
-#### Agent Roles and Responsibilities
-Market Data Analyst
-
-Acts as the system's entry point
-Responsible for collecting and preprocessing all necessary market data
-Fetches A-share market data through the akshare API
-Data sources: Eastmoney, Sina Finance, etc.
-Technical Analyst
-
-Analyzes price trends, trading volume, momentum, and other technical indicators
-Generates trading signals based on technical analysis
-Focuses on short-term market trends and trading opportunities
-Fundamentals Analyst
-
-Analyzes company financial metrics and operational status
-Evaluates the company's long-term growth potential
-Generates trading signals based on fundamental analysis
-Sentiment Analyst
-
-Analyzes market news and public opinion data
-Assesses market sentiment and investor behavior
-Generates trading signals based on sentiment
-Valuation Analyst
-
-Conducts company valuation analysis
-Assess the intrinsic value of stocks
-Generates trading signals based on valuation
-Risk Manager
-
-Integrates trading signals from all agents
-Assesses potential risks
-Sets trading limits and risk control parameters
-Generates risk management signals
-Portfolio Manager
-
-Acts as the final decision-maker
-Considers all signals and risk factors comprehensively
-Makes final trading decisions (buy/sell/hold)
-Ensures decisions comply with risk management requirements
 
 ### Data Flow Process
 Data Collection Phase
 
-Market Data Agent fetches real-time market data through the akshare API:
-Real-time stock quotes (stock_zh_a_spot_em)
-Historical market data (stock_zh_a_hist)
-Financial metrics data (stock_financial_analysis_indicator)
-Financial statement data (stock_financial_report_sina)
-News data is fetched through the Sina Finance API
-All data undergoes standardization and formatting
+- Market Data Agent fetches real-time market data through the akshare API:
+    - Real-time stock quotes (stock_zh_a_spot_em)
+    - Historical market data (stock_zh_a_hist)
+    - Financial metrics data (stock_financial_analysis_indicator)
+    - Financial statement data (stock_financial_report_sina)
+- News data is fetched through the Sina Finance API
+- All data undergoes standardization and formatting
 Analysis Phase
 
-Technical Analyst:
+#### Technical Analyst:
 
-Calculates technical indicators (momentum, trends, volatility, etc.)
-Analyzes price patterns and trading signals
-Generates technical analysis scores and recommendations
-Fundamentals Analyst:
+    Calculates technical indicators (momentum, trends, volatility, etc.)
+    Analyzes price patterns and trading signals
+    Generates technical analysis scores and recommendations
+    Fundamentals Analyst:
 
-Analyzes financial statement data
-Evaluates the company's fundamental status
-Generates fundamental analysis scores
-Sentiment Analyst:
+    Analyzes financial statement data
+    Evaluates the company's fundamental status
+    Generates fundamental analysis scores
+    Sentiment Analyst:
 
-Analyzes the latest market news
-Uses AI models to assess news sentiment
-Generates market sentiment scores
-Valuation Analyst:
+    Analyzes the latest market news
+    Uses AI models to assess news sentiment
+    Generates market sentiment scores
+    Valuation Analyst:
 
-Calculates valuation metrics
-Conducts Discounted Cash Flow (DCF) valuation analysis
-Assess the intrinsic value of stocks
-Risk Assessment Phase
+    Calculates valuation metrics
+    Conducts Discounted Cash Flow (DCF) valuation analysis
+    Assess the intrinsic value of stocks
+    Risk Assessment Phase
 
-Risk Manager considers multiple dimensions:
+#### Risk Manager considers multiple dimensions:
 
-Market risk assessment (volatility, Beta, etc.)
-Position size limit calculations
-Setting stop-loss and take-profit levels
-Portfolio risk control
-Decision Phase
+    Market risk assessment (volatility, Beta, etc.)
+    Position size limit calculations
+    Setting stop-loss and take-profit levels
+    Portfolio risk control
+    Decision Phase
 
-Portfolio Manager makes decisions based on:
+#### Portfolio Manager makes decisions based on:
 
-Signal strength and confidence from each agent
-Current market conditions and risk levels
-Portfolio status and cash levels
-Consideration of trading costs and liquidity
-Data Storage and Caching
+    Signal strength and confidence from each agent
+    Current market conditions and risk levels
+    Portfolio status and cash levels
+    Consideration of trading costs and liquidity
+    Data Storage and Caching
 
-Sentiment analysis results are cached in data/sentiment_cache.json
-News data is stored in the data/stock_news/ directory
-Log files are stored by type in the logs/ directory
-API call records are written to logs in real-time
-Monitoring and Feedback
+    Sentiment analysis results are cached in data/sentiment_cache.json
+    News data is stored in the data/stock_news/ directory
+    Log files are stored by type in the logs/ directory
+    API call records are written to logs in real-time
+    Monitoring and Feedback
 
-All API calls are thoroughly logged
-The analysis process of each agent is traceable
-The system's decision-making process is transparent and auditable
-Backtest results provide performance evaluation
-Agent Collaboration Mechanism
-Information Sharing
 
-All agents share the same state object (AgentState)
-Communication is done through a message-passing mechanism
-Each agent can access necessary historical data
-Decision Weights
+    All agents share the same state object (AgentState)
+    Communication is done through a message-passing mechanism
+    Each agent can access necessary historical data
+    Decision Weights
 
-Portfolio Manager considers different signal weights when making decisions:
+    Portfolio Manager considers different signal weights when making decisions:
 
-Valuation Analysis: 35%
-Fundamental Analysis: 30%
-Technical Analysis: 25%
-Sentiment Analysis: 10%
-Risk Control
+    Valuation Analysis: 35%
+    Fundamental Analysis: 30%
+    Technical Analysis: 25%
+    Sentiment Analysis: 10%
+    Risk Control
 
-Mandatory risk limits
-Maximum position limits
-Trading size restrictions
-Stop-loss and take-profit settings
-System Features
-Modular Design
+    Mandatory risk limits
+    Maximum position limits
+    Trading size restrictions
+    Stop-loss and take-profit settings
+    System Features
+    Modular Design
 
-Each agent is an independent module
-Easy to maintain and upgrade
-Can be individually tested and optimized
-Scalability
+    Each agent is an independent module
+    Easy to maintain and upgrade
+    Can be individually tested and optimized
+    Scalability
 
-Easily add new analysts
-Support adding new data sources
-Expand decision-making strategies
-Risk Management
+    Easily add new analysts
+    Support adding new data sources
+    Expand decision-making strategies
+#### Risk Management
 
-Multi-layered risk control
-Real-time risk assessment
-Automatic stop-loss mechanisms
-Intelligent Decision-Making
+    Multi-layered risk control
+    Real-time risk assessment
+    Automatic stop-loss mechanisms
+    Intelligent Decision-Making
 
-Based on multi-dimensional analysis
-Considers multiple market factors
-Dynamically adjusts strategies
-Future Prospects
-Data Source Expansion
+    Based on multi-dimensional analysis
+    Considers multiple market factors
+    Dynamically adjusts strategies
+    Future Prospects
+    Data Source Expansion
 
-Add more A-share data sources
-Integrate more financial data platforms
-Include social media sentiment data
-Expand to Hong Kong and US stock markets
-Function Enhancements
+    Add more A-share data sources
+    Integrate more financial data platforms
+    Include social media sentiment data
+    Expand to Hong Kong and US stock markets
+    Function Enhancements
 
-Add more technical indicators
-Implement automated backtesting
-Support multi-stock portfolio management
-Performance Optimization
+    Add more technical indicators
+    Implement automated backtesting
+    Support multi-stock portfolio management
+    Performance Optimization
 
-Improve data processing efficiency
-Optimize decision algorithms
-Increase parallel processing capabilities
-Sentiment Analysis Feature
-The Sentiment Analysis Agent is one of the key components of the system, responsible for analyzing the potential impact of market news and public opinion on stocks.
+    Improve data processing efficiency
+    Optimize decision algorithms
+    Increase parallel processing capabilities
+    Sentiment Analysis Feature
+    The Sentiment Analysis Agent is one of the key components of the system, responsible for analyzing the potential impact of market news and public opinion on stocks.
 
-Feature Highlights
-News Data Collection
+#### Automatically crawls the latest stock-related news
+    Supports multiple news sources
+    Real-time news data updates
+    Sentiment Analysis Processing
 
-Automatically crawls the latest stock-related news
-Supports multiple news sources
-Real-time news data updates
-Sentiment Analysis Processing
+    Uses advanced AI models to analyze news sentiment
+    Sentiment score range: -1 (extremely negative) to 1 (extremely positive)
+    Considers the importance and timeliness of news
+    Trading Signal Generation
 
-Uses advanced AI models to analyze news sentiment
-Sentiment score range: -1 (extremely negative) to 1 (extremely positive)
-Considers the importance and timeliness of news
-Trading Signal Generation
+    Generates trading signals based on sentiment analysis results
+    - Includes signal type (bullish/bearish)
+    - Provides confidence level assessment
+    - Accompanied by detailed analysis reasoning
 
-Generates trading signals based on sentiment analysis results
-Includes signal type (bullish/bearish)
-Provides confidence level assessment
-Accompanied by detailed analysis reasoning
-Sentiment Score Description
-1.0: Extremely Positive (Significant favorable news, unexpected performance, industry policy support)
-0.5 to 0.9: Positive (Revenue growth, new projects launched, received orders)
-0.1 to 0.4: Slightly Positive (Small contracts signed, normal daily operations)
-0.0: Neutral (Daily announcements, personnel changes, news with no significant impact)
--0.1 to -0.4: Slightly Negative (Minor lawsuits, losses in non-core business)
--0.5 to -0.9: Negative (Performance decline, loss of key customers, tightening industry policies)
--1.0: Extremely Negative (Major violations, severe losses in core business, regulatory penalties)
+#### Sentiment Score Description
+    - 1.0: Extremely Positive (Significant favorable news, unexpected performance, industry policy support)
+    - 0.5 to 0.9: Positive (Revenue growth, new projects launched, received orders)
+    - 0.1 to 0.4: Slightly Positive (Small contracts signed, normal daily operations)
+    - 0.0: Neutral (Daily announcements, personnel changes, news with no significant impact)
+    - -0.1 to -0.4: Slightly Negative (Minor lawsuits, losses in non-core business)
+    - -0.5 to -0.9: Negative (Performance decline, loss of key customers, tightening industry policies)
+    - =1.0: Extremely Negative (Major violations, severe losses in core business, regulatory penalties)
