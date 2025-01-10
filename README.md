@@ -17,6 +17,17 @@ This is a proof-of-concept project for an AI-based investment system. The projec
 ```python
 [src/simple_agents/example_smolagents/agents_smolagents.py]
 ```
+## Rating Criteria
+
+| **Criteria**                             | **Rating (1-5)** |
+|------------------------------------------|------------------|
+| **Ease of Getting Started**              | ⭐⭐⭐⭐☆ (4)        |
+| **Ease of tool calling**                 | ⭐⭐☆☆☆ (2)        |
+| **Local Model Feedback**                 | ⭐☆☆☆☆ (1)         |
+| **Ease in Setting Up Agents' Logic**     | ⭐☆☆☆☆(1)        |
+**comment**: The logic of agents is hard to set up, that cause issue, one the agent got the unexpected result from tool, he will try to write all the code by himself, that means, you have better always have search and visit web tool.
+
+
 ```bash
 ╭────────────────────────────────────────────────────────────────────────────────────────────── New run ───────────────────────────────────────────────────────────────────────────────────────────────╮
 │                                                                                                                                                                                                      │

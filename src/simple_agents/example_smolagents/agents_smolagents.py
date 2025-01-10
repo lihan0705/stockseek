@@ -20,7 +20,6 @@ def get_historical_prices(symbol: str, start_date: str, end_date: str) -> str:
     """
     # Fetch historical data using yfinance
     data = get_price_history(symbol, start_date=start_date, end_date=end_date)
-    print(data)
     # Drop the second level of MultiIndex if it exists
     if isinstance(data.columns, pd.MultiIndex):
         data.columns = data.columns.droplevel(1)
